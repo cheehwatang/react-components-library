@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       <div>
-        <Button success outline rounded>
+        <Button success outline rounded className="mb-5">
           <GoBell />
           Save
         </Button>
