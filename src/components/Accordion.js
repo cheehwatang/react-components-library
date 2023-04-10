@@ -5,7 +5,15 @@ function Accordion({ items }) {
   const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (newIndex) => {
-    setExpandedIndex(newIndex === expandedIndex ? -1 : newIndex);
+    // Functional Update, to use the most up to date value from the event handler.
+    // React uses batching when calling state functions.
+    setExpandedIndex((currentExpandedIndex) => {
+      if (newIndex === currentExpandedIndex) {
+        return -1;
+      } else {
+        return newIndex;
+      }
+    });
   };
 
   const renderedItems = items.map((item, index) => {
