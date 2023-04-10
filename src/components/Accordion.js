@@ -2,10 +2,10 @@ import { useState } from "react";
 import { FaAngleDown, FaAngleLeft } from "react-icons/fa";
 
 function Accordion({ items }) {
-  const [expandedIndex, setExpandedIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState(-1);
 
   const handleClick = (newIndex) => {
-    setExpandedIndex(newIndex);
+    setExpandedIndex(newIndex === expandedIndex ? -1 : newIndex);
   };
 
   const renderedItems = items.map((item, index) => {
