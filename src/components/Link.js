@@ -1,10 +1,13 @@
 import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
-function Link({ to, children }) {
+function Link({ to, children, className }) {
   const { navigate } = useNavigation();
 
-  const classes = classNames("text-blue-500 underline cursor-pointer");
+  const classes = classNames(
+    "text-blue-500 underline cursor-pointer",
+    className
+  );
 
   const handleClick = (event) => {
     if (event.metaKey || event.ctrlKey) {
