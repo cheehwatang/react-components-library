@@ -8,6 +8,10 @@ function TablePage() {
     { name: "Lime", color: "bg-green-500", score: 4 },
   ];
 
+  const keyFunction = (fruit) => {
+    return fruit.name;
+  };
+
   const config = [
     { label: "Fruit", render: (fruit) => fruit.name },
     {
@@ -19,7 +23,7 @@ function TablePage() {
 
   return (
     <div>
-      <Table data={data} config={config} />
+      <Table data={data} config={config} keyFunction={keyFunction} />
     </div>
   );
 }
