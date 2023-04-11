@@ -1,12 +1,13 @@
 import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
-function Link({ to, children, className }) {
-  const { navigate } = useNavigation();
+function Link({ to, children, className, activeClassName }) {
+  const { navigate, currentPath } = useNavigation();
 
   const classes = classNames(
     "text-blue-500 underline cursor-pointer",
-    className
+    className,
+    currentPath === to && activeClassName
   );
 
   const handleClick = (event) => {
