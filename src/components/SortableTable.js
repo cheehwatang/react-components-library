@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Table from "./Table";
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 function SortableTable(props) {
   const [sortOrder, setSortOrder] = useState(null);
@@ -46,12 +47,54 @@ function SortableTable(props) {
     return {
       ...column,
       header: () => (
-        <th onClick={() => handleClick(column.label)}>{column.label}</th>
+        <th
+          className="cursor-pointer"
+          onClick={() => handleClick(column.label)}
+        >
+          <div className="flex items-center">
+            {getIcons(column.label, sortBy, sortOrder)}
+            {column.label}
+          </div>
+        </th>
       ),
     };
   });
 
   return <Table {...props} config={updatedConfig} data={sortedData} />;
+}
+
+function getIcons(label, sortBy, sortOrder) {
+  if (label !== sortBy) {
+    return (
+      <div>
+        <FaCaretUp />
+        <FaCaretDown />
+      </div>
+    );
+  }
+
+  if (sortOrder === null) {
+    return (
+      <div>
+        <FaCaretUp />
+        <FaCaretDown />
+      </div>
+    );
+  } else if (sortOrder === "asc") {
+    return (
+      <div>
+        <FaCaretUp />
+        <FaCaretDown className="invisible" />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <FaCaretUp className="invisible" />
+        <FaCaretDown />
+      </div>
+    );
+  }
 }
 
 export default SortableTable;
